@@ -1,27 +1,4 @@
-/**
- * Seeds a full 12-class school: classes 1-12 (section A), at least 10 students
- * (with linked parents, Pakistani names) per class, a dedicated teacher pool
- * (2 teachers per subject, shared across classes), and a conflict-free weekly
- * timetable for every class.
- *
- * Behaviour, as agreed with the project owner:
- *   - Classes 1-5 and their existing students/parents are left untouched.
- *   - Class 12 is fully wiped (students, their dedicated parents, attendance,
- *     the class document itself) and rebuilt from scratch.
- *   - Every class ends up with at least 10 students.
- *   - Every class (1-12) gets a fresh, conflict-free weekly timetable, since
- *     the existing timetables were incomplete legacy demo data.
- *
- * Two phases:
- *   1. Direct MongoDB cleanup (wipe class 12, clear stale assignments/schedules)
- *      - there's no safe cascading-delete HTTP endpoint for this.
- *   2. HTTP calls against the running backend (http://localhost:8080) to
- *      create classes/students/teachers/timetables, so every write goes
- *      through the same validation and conflict-checking the real app uses.
- *
- * Usage: start the backend first (`node app.js` in FYP/backend), then run
- *   node scripts/seedFullSchool.js
- */
+
 
 const mongoose = require('mongoose');
 

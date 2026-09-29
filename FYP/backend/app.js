@@ -779,6 +779,7 @@ app.post("/api/teacher-assignments", async (req, res) => {
 
         const subjectKey = normalizeSubject(subject);
         const existingSubject = await TeacherAssignment.findOne({ classId, academicYear, subjectKey }).populate('teacherId', 'teacherName');
+
         if (existingSubject) {
             const holder = existingSubject.teacherId?.teacherName || existingSubject.teacherEmail;
             if (String(existingSubject.teacherId?._id || existingSubject.teacherId) === String(teacher._id)) {
